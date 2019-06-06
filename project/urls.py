@@ -19,5 +19,6 @@ from examples import views
 
 urlpatterns = [
     path('', views.OwnerCreate.as_view(), name='create'),
+    path('<pk>', views.OwnerCreate.as_view(), name='detail'),
     path('admin/', admin.site.urls),
 ]
