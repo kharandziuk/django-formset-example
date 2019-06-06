@@ -4,6 +4,8 @@ from django.conf import settings
 
 from . import models
 
+from extra_views import InlineFormSetFactory
+
 class OwnerForm(forms.ModelForm):
     class Meta:
         model = models.Owner
@@ -15,12 +17,7 @@ class AggregateInlineForm(forms.ModelForm):
         model = models.Aggregate
         fields = '__all__'
 
-
-AggregateInlineFormset = inlineformset_factory(
-    models.Owner,
-    models.Aggregate,
-    form=AggregateInlineForm,
-    extra=3,
-    can_delete=False,
-    can_order=False
-)
+class AggregateInlineFormset(InlineFormSetFactory):
+    form_class = AggregateInlineForm
+    model = models.Aggregate
+    factory_kwargs=dict(extra=3, can_delete=False, can_order=False)

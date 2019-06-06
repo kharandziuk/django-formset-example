@@ -8,6 +8,7 @@ def test_smoke(django_app):
     form = response.form
     form['name'] = 'owner'
     form['aggregate_set-0-name'] = 'owner'
+    response.showbrowser()
     form.submit()
     assert models.Owner.objects.count() == 1
     assert models.Aggregate.objects.count() == 1

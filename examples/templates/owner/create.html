@@ -3,9 +3,11 @@
 {{ form.errors }}
 {{ form.as_table }}
 <h2>Questions:</h2>
-{{ inlines.non_form_errors }}
-{{ inlines.as_p }}
-{{ inlines.management_form }}
+{% for formset in inlines %}
+  {{ formset.non_form_errors }}
+  {{ formset.as_p }}
+  {{ formset.management_form }}
+{% endfor %}
 
 <input type="submit" class="btn btn-primary" value="Submit">
 </form>
